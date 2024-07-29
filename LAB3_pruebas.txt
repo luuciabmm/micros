@@ -1,0 +1,108 @@
+LAB3-MICROS
+
+//PRUEBA 1, CAMBIAR LAS VELOCIDADES DEPENDE DE LA DISTANCIA////////////////
+
+    if (pulse_duration < 589) //menos de 10
+    {
+      sound_off_inter();
+      buzzerSOUND();
+      left_velocityAc = 50;
+      right_velocityAc = 50;
+      set_direction(backwards);
+      //new_velocity();
+
+    }else{
+      if(pulse_duration < 1176){  //entre 10 y 20
+        sound_on_inter();
+        left_velocityAc = 80;
+        right_velocityAc = 80;
+        set_direction(forwards); //prueba para ver si gira
+        //new_velocity();
+      }else{
+        sound_off_inter();
+        buzzerNO_SOUND();
+        left_velocityAc = left_velocityMax; ;
+        right_velocityAc = right_velocityMax;
+        set_direction(forwards);
+
+
+      }
+    }
+
+//PRUEBA 2, GIRAR HACIA LOS DOS LADOS//////////////////////////////////
+
+    if (pulse_duration < 589) //menos de 10
+    {
+      sound_off_inter();
+      buzzerSOUND();
+      
+      set_direction(turn_right);
+
+      set_direction(turn_left);
+
+
+    }else{
+      if(pulse_duration < 1176){  //entre 10 y 20
+        sound_on_inter();
+        left_velocityAc = 80;
+        right_velocityAc = 80;
+        set_direction(forwards); //prueba para ver si gira
+        //new_velocity();
+      }else{
+        sound_off_inter();
+        buzzerNO_SOUND();
+        left_velocityAc = left_velocityMax; ;
+        right_velocityAc = right_velocityMax;
+        set_direction(forwards);
+
+
+      }
+    }
+
+//PRUEBA 3, DYNAMICS WITH OBSTACLES////////////////////////////////
+    if (pulse_duration < 589) //menos de 10
+    {
+      sound_off_inter();
+      buzzerSOUND();
+      //set_direction(stop);
+      //set_direction(turn_right);
+
+ //nos queda que gire exactamente 90grados
+
+      if (pre_obstacle != obstacle)
+      {
+        pre_obstacle = obstacle;
+        switch (obstacle)
+        {
+        case OBSTACLE_YES:
+          set_direction(stop);
+          break;
+        case OBSTACLE_TURN:
+          set_direction(turn_right);
+          break;
+        case OBSTACLE_NO:
+          set_direction(forwards);
+          break;
+        }
+      }
+
+      //set_direction(forwards);
+
+
+    }else{
+      if(pulse_duration < 1176){  //entre 10 y 20
+        sound_on_inter();
+        left_velocityAc = 50;
+        right_velocityAc = 50;
+        set_direction(forwards); //prueba para ver si gira
+
+      }else{
+        sound_off_inter();
+        buzzerNO_SOUND();
+        left_velocityAc = left_velocityMax; ;
+        right_velocityAc = right_velocityMax;
+        set_direction(forwards);
+
+
+      }
+    }
